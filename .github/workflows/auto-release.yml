@@ -2,7 +2,7 @@ name: 'Release'
 
 on:
   schedule:
-    - cron: '0 17 27 * *'
+    - cron: '0 0 28 * *'
 
 jobs:
   mwe:
@@ -21,8 +21,11 @@ jobs:
     # Update tag and pre-release
     # - Update (force-push) tag to the commit that is used in the workflow.
     # - Upload artifacts defined by the user.
-    - uses: pyTooling/Actions/releaser@r0
+    - name: Update Monthly release
+      uses: pyTooling/Actions/releaser@r0
       with:
+        tag: monthly
+        rm: true
         token: ${{ secrets.GITHUB_TOKEN }}
         files: |
           *.zip

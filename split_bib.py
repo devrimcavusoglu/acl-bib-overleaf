@@ -110,6 +110,7 @@ def main():
         split_vals = split_individual_items(r.content.decode("utf-8"))
         write_to_files(split_vals, _FOLDER_PATH, _BIB_FILE_BASE_NAME)
         create_zip(_FOLDER_PATH, _ZIP_FILE_PATH)
+        shutil.rmtree(_FOLDER_PATH, ignore_errors=True)
     else:
         print("Download failed.")
         sys.exit(1)
