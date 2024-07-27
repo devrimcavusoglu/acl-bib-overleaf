@@ -2,7 +2,6 @@ import sys
 import os
 import re
 from datetime import datetime
-import zipfile 
 import shutil
 import requests
 
@@ -19,6 +18,7 @@ def create_zip(folder_path: str, zip_file_path: str):
     shutil.make_archive(zip_file_path, 'zip', folder_path)
     print(f'zip file {zip_file_path} successfully created')
 
+
 def combine_at_items(split_list):
     """Combines bibtex entries starting with '@' with the next item.
 
@@ -34,10 +34,10 @@ def combine_at_items(split_list):
     while i < len(split_list):
         if split_list[i].startswith('@'):
             # Combine the current item with the next one if it exists
-            if i + 1 < len(split_list): 
+            if i + 1 < len(split_list):
                 combined_item = split_list[i] + split_list[i + 1]
                 combined_list.append(combined_item)
-                i += 2  
+                i += 2
             else:
                 combined_list.append(split_list[i])
                 i += 1
@@ -67,7 +67,8 @@ def split_individual_items(content: str):
     split_values_clean = combine_at_items(split_values_clean)
     return split_values_clean
 
-def write_to_files(items: list, folder_path: str, bib_base_name: str, file_size_limit=45 * 1024 * 1024): 
+
+def write_to_files(items: list, folder_path: str, bib_base_name: str, file_size_limit=45 * 1024 * 1024):
     """
     Writes items in a list to files, splitting them into multiple files if the size exceeds the limit.
 
@@ -75,7 +76,6 @@ def write_to_files(items: list, folder_path: str, bib_base_name: str, file_size_
         items: The list of items to write.
         file_size_limit: The maximum size of each file in bytes (default: 50MB).
     """
-
 
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
@@ -103,7 +103,6 @@ def write_to_files(items: list, folder_path: str, bib_base_name: str, file_size_
     f.close()
 
 
-
 def main():
     r = requests.get(_BIB_FILE_URL)
     if r.ok:
@@ -114,7 +113,6 @@ def main():
     else:
         print("Download failed.")
         sys.exit(1)
-
 
 
 if __name__ == "__main__":
