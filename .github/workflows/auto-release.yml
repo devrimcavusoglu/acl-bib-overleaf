@@ -1,0 +1,28 @@
+name: 'Release'
+
+on:
+  schedule:
+    - cron: '0 17 27 * *'
+
+jobs:
+  mwe:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Clone repository
+    - uses: actions/checkout@v4
+
+    # Build your application, tool, artifacts, etc.
+    - name: Build
+      run: |
+        pip install requests
+        python split_bib.py
+
+    # Update tag and pre-release
+    # - Update (force-push) tag to the commit that is used in the workflow.
+    # - Upload artifacts defined by the user.
+    - uses: pyTooling/Actions/releaser@r0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          *.zip
