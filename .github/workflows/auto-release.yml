@@ -26,6 +26,6 @@ jobs:
       with:
         tag: monthly
         rm: true
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.ACTIONS_SECRET }}
         files: |
           *.zip
