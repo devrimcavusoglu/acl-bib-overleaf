@@ -1,11 +1,11 @@
-name: 'Release'
+name: 'Monthly Release'
 
 on:
   schedule:
-    - cron: '0 0 29 * *'
+    - cron: '0 0 30 * *'
 
 jobs:
-  mwe:
+  monthly-release:
     runs-on: ubuntu-latest
     steps:
 
