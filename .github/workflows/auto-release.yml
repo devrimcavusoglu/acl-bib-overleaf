@@ -2,7 +2,7 @@ name: 'Monthly Release'
 
 on:
   schedule:
-    - cron: '0 0 30 * *'
+    - cron: '0 0 * * 0'
 
 jobs:
   monthly-release:
@@ -24,7 +24,7 @@ jobs:
     - name: Update Monthly release
       uses: pyTooling/Actions/releaser@r0
       with:
-        tag: monthly
+        tag: weekly
         rm: true
         token: ${{ secrets.ACTIONS_SECRET }}
         files: |
