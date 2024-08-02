@@ -1,4 +1,4 @@
-name: 'Monthly Release'
+name: 'Weekly Release'
 
 on:
   schedule:
